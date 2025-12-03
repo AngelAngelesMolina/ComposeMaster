@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jaam.coding.ComposeMaster.ui.theme.ComposeMasterTheme
+import com.jaamcoding.composemaster.ui.theme.ComposeMasterTheme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -23,8 +23,8 @@ fun FlowLayoutDemo(modifier: Modifier = Modifier) {
             space = 40.dp,
             alignment = Alignment.CenterHorizontally
         ),
-        //maxlines
-        //maxItemsInEachRow = 3, //max in each row
+//        maxlines
+        maxItemsInEachRow = 3, //max in each row
         //verticalArrangement = Arrangement.SpaceBetween //we can order here because we can have n rows
     ) { // fits as much items as it can
         for (i in 1..30)

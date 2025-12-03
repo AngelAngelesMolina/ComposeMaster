@@ -19,8 +19,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jaam.coding.ComposeMaster.R
-import com.jaam.coding.ComposeMaster.ui.theme.ComposeMasterTheme
+import com.jaamcoding.composemaster.R
+import com.jaamcoding.composemaster.ui.theme.ComposeMasterTheme
+
 
 @Composable
 fun BoxDemo(modifier: Modifier = Modifier) {
@@ -29,7 +30,10 @@ fun BoxDemo(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.BottomCenter
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = painterResource(
+                id = R
+                    .drawable.ic_launcher_background
+            ),
             contentDescription = null
         )
         Box(
