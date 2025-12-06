@@ -13,12 +13,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -26,9 +32,12 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -54,6 +63,17 @@ private val tags = listOf(
 
     )
 
+private val offers = mapOf(
+    R.drawable.bed to "2 Bed",
+    R.drawable.breakfast to "Breakfast",
+    R.drawable.cutlery to "Cutlery",
+    R.drawable.pawprint to "Pet Friendly",
+    R.drawable.serving_dish to "Dinner",
+    R.drawable.snowflake to "Air Conditioning",
+    R.drawable.television to "TV",
+    R.drawable.wi_fi_icon to "Wifi",
+)
+
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun HotelBookingScreen(paddingValues: PaddingValues = PaddingValues()) {
@@ -62,6 +82,7 @@ fun HotelBookingScreen(paddingValues: PaddingValues = PaddingValues()) {
             .fillMaxSize()
             .padding(paddingValues)
             .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
@@ -130,10 +151,42 @@ fun HotelBookingScreen(paddingValues: PaddingValues = PaddingValues()) {
         }
         item {
             LazyRow(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(
+                    space = 16.dp,
+                    alignment = Alignment.CenterHorizontally
+                )
             ) {
+                items(offers.entries.toList()) { (drawableResId, label) ->
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .background(Color.Gray.copy(alpha = 0.3f))
+                            .padding(8.dp)
+                    ) {
+                        Icon(
+                            imageVector = ImageVector.vectorResource(drawableResId),
+                            contentDescription = label,
+                            modifier = Modifier.size(36.dp)
+                        )
+                        Text(text = label, fontSize = 13.sp)
+                    }
 
+                }
+            }
+        }
+        item {
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .widthIn(max = 400.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(text = "Book now!")
             }
         }
 
